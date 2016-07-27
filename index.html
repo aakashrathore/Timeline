@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app = "timeline">
+	<head>
+		<title>Timeline</title>
+		<link rel="stylesheet" type="text/css" href="CSS/style.css">
+		  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	</head>
+
+	<body ng-controller = "myCtrl">
+		<div ng-repeat="event in events" class="btn btn-primary events">
+				<div ng-drag="true" ng-drag-data="event" data-allow-transform="true"> {{$index}}. {{event.name}} </div>
+		</div>
+
+		<ul class="timeline">
+			<li ng-repeat="droppedEvent in droppedEvents" >
+				<!-- {{dropppedEvent.name}} -->
+				<div class="timeline-description" ng-drop="true" ng-drop-success="onDropComplete($data,$event, $index)">
+				
+					<div ng-drag="true" ng-drag-data="droppedEvent" ng-drag-success="onDragComplete2($data,$event, $index)" ng-center-anchor="{{centerAnchor}}">
+              		{{droppedEvent.age}} {{droppedEvent.name}}
+              		</div>
+	              </div>
+			</li>
+		</ul>
+		<hr> <br>
+		<hr>
+		<button type="submit" class="btn btn-success" ng-click="checkAnswers()" ng-if="view"> Submit </button>
+		<!--<ng-view> </ng-view>-->
+		<div ng-if="!view">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			<strong>Congratulations! Your Score is here</strong> You scored {{obtainedMarks}} out of {{maxMarks}}
+		</div>
+	<script src="Scripts/angular.js"></script>
+	<!-- <script src="bower_components/angular-timeline/dist/angular-timeline.js"></script> -->
+	<script type="text/javascript" src="Scripts/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="Scripts/ngDraggable.js"></script>
+	<script src="app.js"></script>
+	</body>
+</html>

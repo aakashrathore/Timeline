@@ -1,0 +1,13 @@
+{
+  "name": "timeline",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Aakash Singh Rathore"
+  ],
+  "license": "ISC",
+  "homepage": "index.html",
+  "dependencies": {
+    "angular-timeline": "^1.7.0"
+  }
+}
