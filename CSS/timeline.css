@@ -1,0 +1,25 @@
+.vis-item.astronomy{
+	background-color: deepskyblue;
+	border: solid 1px black;
+}
+.vis-item.geology{
+	background-color: saddlebrown;
+	border: solid 1px black;
+}
+.vis-item.biology{
+	background-color: orangered;
+	border: solid 1px black;
+}
+
+.vis-even{
+	background-color: #f5f5f5;
+}
+.vis-odd{
+	background-color:lightgrey;
+}
+
+.event{
+	width:auto;
+	display: inline-block;
+	margin: 10px;
+}

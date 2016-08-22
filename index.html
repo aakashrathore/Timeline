@@ -1,41 +1,75 @@
 <!DOCTYPE html>
 <html ng-app = "timeline">
-	<head>
-		<title>Timeline</title>
-		<link rel="stylesheet" type="text/css" href="CSS/style.css">
-		  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	</head>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Timeline</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bower_components/vis/dist/vis.css">
+	<link href="https://brand.arizona.edu/sites/all/themes/brand/ua-brand-icons/ua-brand-icons.css" rel="stylesheet">
+	<link href="http://bitbucket.org/uadigital/ua-bootstrap/downloads/ua-bootstrap-1.0.0-beta1.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="CSS/timeline.css">
+</head>
 
-	<body ng-controller = "myCtrl">
-		<div ng-repeat="event in events" class="btn btn-primary events">
-				<div ng-drag="true" ng-drag-data="event" data-allow-transform="true"> {{$index}}. {{event.name}} </div>
+<body ng-controller = "myCtrl">
+<!--<ul class="timeline">-->
+<!--<li ng-repeat="date in datesDisplayed" ng-click="changeRange($index)">{{date}}</li>-->
+<!--</ul>-->
+<header id="region_header_ua" class="l-arizona-header bg-red">
+	<section class="container l-container">
+		<div class="row">
+			<a href="http://www.arizona.edu" title="The University of Arizona homepage" class="arizona-logo">
+				<img alt="The University of Arizona Wordmark Line Logo White" src="https://brand.arizona.edu/sites/default/files/digital-resources/ua_wordmark_line_logo_white_rgb.svg" class="arizona-line-logo">
+			</a>
 		</div>
+	</section>
+</header>
+<div class="container">
+	<div class="row">
+		<div class="navbar-header">
+			<button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Use ng-view for this</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li class="false lead"><a href="http://www.teachastronomy.com/">Teach Astronomy</a></li>
+				<li class="false lead"><a href="">Menu 2</a></li>
+				<li class="false lead"><a href="">Menu 3</a></li>
+				<li class="active lead"><a href="">Menu 4</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- /.nav-collapse-->
+</div>
+<h1>Welcome, your quiz is ready!</h1>
+<p class="text-size-h2">Instructions</p>
+<ul class="triangle">
+	<li>Move the items on the timeline and place them at the appropriate time</li>
+	<li> Something about zooming here</li>
+	<li> and more... (about scaling?)</li>
+	<li> more....</li>
+	<li>Enough!!!</li>
+</ul>
 
-		<ul class="timeline">
-			<li ng-repeat="droppedEvent in droppedEvents" >
-				<!-- {{dropppedEvent.name}} -->
-				<div class="timeline-description" ng-drop="true" ng-drop-success="onDropComplete($data,$event, $index)">
-				
-					<div ng-drag="true" ng-drag-data="droppedEvent" ng-drag-success="onDragComplete2($data,$event, $index)" ng-center-anchor="{{centerAnchor}}">
-              		{{droppedEvent.age}} {{droppedEvent.name}}
-              		</div>
-	              </div>
-			</li>
-		</ul>
-		<hr> <br>
-		<hr>
-		<button type="submit" class="btn btn-success" ng-click="checkAnswers()" ng-if="view"> Submit </button>
-		<!--<ng-view> </ng-view>-->
-		<div ng-if="!view">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-			<strong>Congratulations! Your Score is here</strong> You scored {{obtainedMarks}} out of {{maxMarks}}
-		</div>
-	<script src="Scripts/angular.js"></script>
-	<!-- <script src="bower_components/angular-timeline/dist/angular-timeline.js"></script> -->
-	<script type="text/javascript" src="Scripts/angular-route.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="Scripts/ngDraggable.js"></script>
-	<script src="app.js"></script>
-	</body>
+<div class="event panel-group" ng-repeat="data in data">
+	<div class="panel panel-info">
+		<div class="panel-heading"> {{data.content}} </div>
+		<input class="panel-body" type="datetime" ng-model="data.start">
+		<div class="panel-footer" ng-click="add($index)">Click to add</div>
+	</div>
+</div>
+<div id="visualization"></div>
+
+<button type="submit" ng-click="submit()" ng-if="display" class="btn btn-success">Submit</button>
+
+<div class="text-size-h2 lead" ng-if="!display"> Congratulations you scored {{marks}} out of {{total}}</div>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/vis/dist/vis.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="./app.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</body>
 </html>
